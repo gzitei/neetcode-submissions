@@ -1,0 +1,19 @@
+class Solution {
+    longestConsecutive(nums: number[]): number {
+        const set = new Set([... nums])
+        let longestStreak = 0
+        for (let num of nums) {
+            // check if num is first in sequence
+            if (!set.has(num-1)) {
+                let currentStreak = 1
+                let currentNum = num
+                while (set.has(currentNum+1)) {
+                    currentStreak += 1
+                    currentNum += 1
+                }
+                longestStreak = Math.max(longestStreak, currentStreak)
+            }
+        }
+        return longestStreak
+    }
+}
